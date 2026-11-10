@@ -1,0 +1,7 @@
+{
+  "gui.xaero_chunkmark.mark_chunk": "标记区块 (%1$d, %2$d)",
+  "gui.xaero_chunkmark.unmark_chunk": "取消标记 (%1$d, %2$d)",
+  "gui.xaero_chunkmark.mark_area": "标记 %1$d 个区块",
+  "gui.xaero_chunkmark.unmark_area": "取消标记 %1$d 个区块",
+  "gui.xaero_chunkmark.tooltip_coords": "已标记区块 (%1$d, %2$d)"
+}

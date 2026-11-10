@@ -1,0 +1,7 @@
+{
+  "gui.xaero_chunkmark.mark_chunk": "Mark Chunk (%1$d, %2$d)",
+  "gui.xaero_chunkmark.unmark_chunk": "Unmark Chunk (%1$d, %2$d)",
+  "gui.xaero_chunkmark.mark_area": "Mark %1$d Chunks",
+  "gui.xaero_chunkmark.unmark_area": "Unmark %1$d Chunks",
+  "gui.xaero_chunkmark.tooltip_coords": "Marked chunk (%1$d, %2$d)"
+}

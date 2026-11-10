@@ -1,0 +1,41 @@
+name: build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      # Xaero's jars are not redistributed with this repository (Xaero's mods are not open source).
+      # Fetch the world map from Modrinth's CDN and pull the bundled XaeroLib out of it for compilation only.
+      - name: Fetch Xaero's World Map (compile-time only)
+        run: |
+          mkdir -p libs
+          curl -sSL -o libs/xaeroworldmap.jar \
+            "https://cdn.modrinth.com/data/NcUtCpym/versions/KtEupJvB/xaeroworldmap-forge-1.20.1-1.47.0.jar"
+          unzip -p libs/xaeroworldmap.jar "META-INF/jarjar/xaerolib-forge-1.20.1-1.7.3.jar" > libs/xaerolib.jar
+          ls -la libs
+
+      - name: Build
+        run: |
+          chmod +x gradlew
+          ./gradlew build --no-daemon --stacktrace
+
+      - name: Upload jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: xaerochunkmark
+          path: build/libs/*.jar
+          if-no-files-found: error
